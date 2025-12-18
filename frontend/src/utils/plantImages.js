@@ -1,5 +1,6 @@
 // Utility to get high-quality images for plants
 // Using stable Picsum Photos API for consistent, persistent images
+// Production Ready: Dynamic API URL enabled
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 
