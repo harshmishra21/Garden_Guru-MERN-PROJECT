@@ -1,26 +1,28 @@
 // Utility to get high-quality images for plants
 // Using stable Picsum Photos API for consistent, persistent images
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
 const plantImageMap = {
-    'Rose': 'http://localhost:5001/plants/rose.jpg',
-    'Tulip': 'http://localhost:5001/plants/tulip.jpg',
-    'Sunflower': 'http://localhost:5001/plants/sunflower.jpg',
-    'Orchid': 'http://localhost:5001/plants/orchid.jpg',
-    'Lily': 'http://localhost:5001/plants/lily.jpg',
-    'Daisy': 'http://localhost:5001/plants/daisy.jpg',
-    'Fern': 'http://localhost:5001/plants/fern.jpg',
-    'Cactus': 'http://localhost:5001/plants/cactus.jpg',
-    'Succulent': 'http://localhost:5001/plants/succulent.jpg',
-    'Snake Plant': 'http://localhost:5001/plants/snakeplant.jpg',
-    'Aloe Vera': 'http://localhost:5001/plants/aloevera.jpg',
-    'Monstera': 'http://localhost:5001/plants/monstera.jpg',
-    'Ficus': 'http://localhost:5001/plants/ficus.jpg',
-    'Lavender': 'http://localhost:5001/plants/lavender.jpg',
-    'Basil': 'http://localhost:5001/plants/basil.jpg',
-    'Mint': 'http://localhost:5001/plants/mint.jpg',
-    'Spider Plant': 'http://localhost:5001/plants/spiderplant.jpg',
-    'Peace Lily': 'http://localhost:5001/plants/peacelily.jpg',
-    'General': 'http://localhost:5001/plants/general.jpg'
+    'Rose': `${API_URL}/plants/rose.jpg`,
+    'Tulip': `${API_URL}/plants/tulip.jpg`,
+    'Sunflower': `${API_URL}/plants/sunflower.jpg`,
+    'Orchid': `${API_URL}/plants/orchid.jpg`,
+    'Lily': `${API_URL}/plants/lily.jpg`,
+    'Daisy': `${API_URL}/plants/daisy.jpg`,
+    'Fern': `${API_URL}/plants/fern.jpg`,
+    'Cactus': `${API_URL}/plants/cactus.jpg`,
+    'Succulent': `${API_URL}/plants/succulent.jpg`,
+    'Snake Plant': `${API_URL}/plants/snakeplant.jpg`,
+    'Aloe Vera': `${API_URL}/plants/aloevera.jpg`,
+    'Monstera': `${API_URL}/plants/monstera.jpg`,
+    'Ficus': `${API_URL}/plants/ficus.jpg`,
+    'Lavender': `${API_URL}/plants/lavender.jpg`,
+    'Basil': `${API_URL}/plants/basil.jpg`,
+    'Mint': `${API_URL}/plants/mint.jpg`,
+    'Spider Plant': `${API_URL}/plants/spiderplant.jpg`,
+    'Peace Lily': `${API_URL}/plants/peacelily.jpg`,
+    'General': `${API_URL}/plants/general.jpg`
 };
 
 // Cache for storing plant images to prevent changing on refresh
