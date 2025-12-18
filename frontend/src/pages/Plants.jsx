@@ -19,7 +19,7 @@ const Plants = () => {
                 headers: { Authorization: `Bearer ${token}` },
             };
             try {
-                const res = await axios.get('http://localhost:5001/api/plants', config);
+                const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/plants`, config);
                 setPlants(res.data);
             } catch (error) {
                 console.error(error);
@@ -40,7 +40,7 @@ const Plants = () => {
             headers: { Authorization: `Bearer ${token}` },
         };
         try {
-            await axios.post('http://localhost:5001/api/garden', {
+            await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/garden`, {
                 plantId: plant._id,
                 name: plant.name,
                 waterReq: plant.instructions,

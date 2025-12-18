@@ -22,9 +22,9 @@ const AdminPanel = () => {
 
     const fetchData = async () => {
         try {
-            const resPlants = await axios.get('http://localhost:5001/api/plants', config);
+            const resPlants = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/plants`, config);
             setPlants(resPlants.data);
-            const resAlerts = await axios.get('http://localhost:5001/api/alerts', config);
+            const resAlerts = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/alerts`, config);
             setAlerts(resAlerts.data);
         } catch (error) {
             console.error(error);
@@ -38,7 +38,7 @@ const AdminPanel = () => {
     const addPlant = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5001/api/plants', plantData, config);
+            await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/plants`, plantData, config);
             fetchData();
             setPlantData({ name: '', instructions: '', sunlight: '', fertilizer: '' });
             alert('Plant added');
@@ -50,7 +50,7 @@ const AdminPanel = () => {
     const deletePlant = async (id) => {
         if (!window.confirm('Delete this plant from master DB?')) return;
         try {
-            await axios.delete(`http://localhost:5001/api/plants/${id}`, config);
+            await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/plants/${id}`, config);
             fetchData(); // Simplest way to refresh
         } catch (error) {
             alert('Failed to delete plant');
@@ -60,7 +60,7 @@ const AdminPanel = () => {
     const addAlert = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5001/api/alerts', alertData, config);
+            await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/alerts`, alertData, config);
             fetchData();
             setAlertData({ title: '', description: '', remedy: '' });
             alert('Alert added');
@@ -72,7 +72,7 @@ const AdminPanel = () => {
     const deleteAlert = async (id) => {
         if (!window.confirm('Delete this alert?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/alerts/${id}`, config);
+            await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/alerts/${id}`, config);
             fetchData();
         } catch (error) {
             alert('Failed to delete alert');

@@ -18,7 +18,7 @@ const Dashboard = () => {
         const fetchGarden = async () => {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             try {
-                const res = await axios.get('http://localhost:5001/api/garden', config);
+                const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/garden`, config);
                 setGarden(res.data);
             } catch (error) { console.error(error); }
         };
@@ -26,7 +26,7 @@ const Dashboard = () => {
         const fetchReminders = async () => {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             try {
-                const res = await axios.get('http://localhost:5001/api/reminders', config);
+                const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/reminders`, config);
                 setReminders(res.data);
             } catch (error) { console.error(error); }
         };

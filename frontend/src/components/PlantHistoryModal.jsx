@@ -20,7 +20,7 @@ const PlantHistoryModal = ({ plant, onClose }) => {
         try {
             setLoading(true);
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const res = await axios.get(`http://localhost:5001/api/stats/${plant._id}`, config);
+            const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/stats/${plant._id}`, config);
             setStats(res.data);
         } catch (error) {
             console.error('Error fetching plant stats:', error);
@@ -33,7 +33,7 @@ const PlantHistoryModal = ({ plant, onClose }) => {
         setLoggingAction(actionType);
         try {
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            await axios.post('http://localhost:5001/api/stats/log', {
+            await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/stats/log`, {
                 gardenPlantId: plant._id,
                 actionType,
                 notes: `Quick ${actionType} logged`
