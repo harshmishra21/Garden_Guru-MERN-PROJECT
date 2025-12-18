@@ -14,7 +14,7 @@ const Alerts = () => {
                 },
             };
             try {
-                const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/alerts`, config);
+                const res = await axios.get('http://localhost:5001/api/alerts', config);
                 setAlerts(res.data);
             } catch (error) {
                 console.error(error);

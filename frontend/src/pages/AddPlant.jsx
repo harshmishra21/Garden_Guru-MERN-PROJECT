@@ -32,7 +32,7 @@ const AddPlant = () => {
         };
 
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/garden`, formData, config);
+            await axios.post('http://localhost:5001/api/garden', formData, config);
             navigate('/');
         } catch (error) {
             alert('Failed to add plant');

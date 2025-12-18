@@ -23,12 +23,12 @@ const PlantDetails = () => {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             try {
                 // Fetch garden plants and find current one
-                const resGarden = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/garden`, config);
+                const resGarden = await axios.get('http://localhost:5001/api/garden', config);
                 const foundPlant = resGarden.data.find(p => p._id === id);
                 setPlant(foundPlant);
 
                 // Fetch logs
-                const resLogs = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/logs/${id}`, config);
+                const resLogs = await axios.get(`http://localhost:5001/api/logs/${id}`, config);
                 setLogs(resLogs.data.reverse()); // Show newest first
             } catch (error) { console.error(error); }
         };
@@ -44,7 +44,7 @@ const PlantDetails = () => {
         if (logImage) formData.append('photo', logImage);
 
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/logs`, formData, config);
+            const res = await axios.post('http://localhost:5001/api/logs', formData, config);
             setLogs([res.data, ...logs]);
             setNewLog('');
             setLogImage(null);
@@ -56,7 +56,7 @@ const PlantDetails = () => {
         e.preventDefault();
         const config = { headers: { Authorization: `Bearer ${token}` } };
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/reminders`, {
+            await axios.post('http://localhost:5001/api/reminders', {
                 gardenPlantId: id,
                 type: reminderType,
                 date: reminderDate
@@ -70,7 +70,7 @@ const PlantDetails = () => {
         if (!window.confirm('Are you sure you want to remove this plant from your garden?')) return;
         const config = { headers: { Authorization: `Bearer ${token}` } };
         try {
-            await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/garden/${id}`, config);
+            await axios.delete(`http://localhost:5001/api/garden/${id}`, config);
             navigate('/');
         } catch (error) { alert('Failed to delete'); }
     }
@@ -189,7 +189,7 @@ const PlantDetails = () => {
                                 <div key={log._id} style={{ display: 'flex', gap: '20px', padding: '20px', background: 'white', borderRadius: '15px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
                                     <div style={{ flex: '0 0 120px', height: '120px', background: '#f0f0f0', borderRadius: '10px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         {log.photo ? (
-                                            <img src={`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/${log.photo}`} alt="Log" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <img src={`http://localhost:5001/${log.photo}`} alt="Log" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         ) : (
                                             <FaSeedling size={30} color="#ccc" />
                                         )}

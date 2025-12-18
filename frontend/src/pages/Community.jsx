@@ -13,7 +13,7 @@ const Community = () => {
         const fetchPosts = async () => {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             try {
-                const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/posts`, config);
+                const res = await axios.get('http://localhost:5001/api/posts', config);
                 setPosts(res.data);
             } catch (error) { console.error(error); }
         };
@@ -28,7 +28,7 @@ const Community = () => {
         if (image) formData.append('image', image);
 
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/posts`, formData, config);
+            const res = await axios.post('http://localhost:5001/api/posts', formData, config);
             setPosts([res.data, ...posts]);
             setNewPost('');
             setImage(null);
@@ -93,7 +93,7 @@ const Community = () => {
 
                             {post.image && (
                                 <div style={{ width: '100%', maxHeight: '400px', overflow: 'hidden', background: '#f0f0f0' }}>
-                                    <img src={`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/${post.image}`} alt="Post content" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                                    <img src={`http://localhost:5001/${post.image}`} alt="Post content" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                                 </div>
                             )}
 

@@ -25,7 +25,7 @@ const PlantStatsOverview = ({ garden }) => {
         try {
             setLoading(true);
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/stats/overview`, config);
+            const res = await axios.get('http://localhost:5001/api/stats/overview', config);
             setStats(res.data);
         } catch (error) {
             console.error('Error fetching stats:', error);
