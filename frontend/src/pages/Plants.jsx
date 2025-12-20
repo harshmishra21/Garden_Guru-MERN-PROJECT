@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaSearch, FaFilter, FaSun, FaFlask, FaPlusCircle } from 'react-icons/fa';
 import { getPlantImage } from '../utils/plantImages';
+import API_URL from '../config/api';
 
 const Plants = () => {
     const [plants, setPlants] = useState([]);
@@ -19,7 +20,7 @@ const Plants = () => {
                 headers: { Authorization: `Bearer ${token}` },
             };
             try {
-                const res = await axios.get('http://localhost:5001/api/plants', config);
+                const res = await axios.get(`${API_URL}/api/plants`, config);
                 setPlants(res.data);
             } catch (error) {
                 console.error(error);
@@ -40,7 +41,7 @@ const Plants = () => {
             headers: { Authorization: `Bearer ${token}` },
         };
         try {
-            await axios.post('http://localhost:5001/api/garden', {
+            await axios.post(`${API_URL}/api/garden`, {
                 plantId: plant._id,
                 name: plant.name,
                 waterReq: plant.instructions,

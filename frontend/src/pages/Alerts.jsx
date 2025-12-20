@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 const Alerts = () => {
     const [alerts, setAlerts] = useState([]);
@@ -14,7 +15,7 @@ const Alerts = () => {
                 },
             };
             try {
-                const res = await axios.get('http://localhost:5001/api/alerts', config);
+                const res = await axios.get(`${API_URL}/api/alerts`, config);
                 setAlerts(res.data);
             } catch (error) {
                 console.error(error);

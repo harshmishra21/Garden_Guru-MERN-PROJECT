@@ -3,6 +3,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { FaTimes, FaTint, FaSeedling, FaCut, FaCalendarAlt, FaPlus } from 'react-icons/fa';
 import { getPlantImage } from '../utils/plantImages';
+import API_URL from '../config/api';
 
 const PlantHistoryModal = ({ plant, onClose }) => {
     const [stats, setStats] = useState(null);
@@ -20,7 +21,7 @@ const PlantHistoryModal = ({ plant, onClose }) => {
         try {
             setLoading(true);
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const res = await axios.get(`http://localhost:5001/api/stats/${plant._id}`, config);
+            const res = await axios.get(`${API_URL}/api/stats/${plant._id}`, config);
             setStats(res.data);
         } catch (error) {
             console.error('Error fetching plant stats:', error);
@@ -33,7 +34,7 @@ const PlantHistoryModal = ({ plant, onClose }) => {
         setLoggingAction(actionType);
         try {
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            await axios.post('http://localhost:5001/api/stats/log', {
+            await axios.post(`${API_URL}/api/stats/log`, {
                 gardenPlantId: plant._id,
                 actionType,
                 notes: `Quick ${actionType} logged`

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaCloudSun, FaTemperatureHigh, FaTint, FaPlus, FaExclamationTriangle, FaLeaf, FaWater, FaSun } from 'react-icons/fa';
 import { getPlantImage, getHeroImage, getWeatherIcon } from '../utils/plantImages';
 import PlantStatsOverview from '../components/PlantStatsOverview';
+import API_URL from '../config/api';
 
 const COLORS = ['#2d6a4f', '#40916c', '#52b788', '#74c69d', '#95d5b2', '#b7e4c7'];
 
@@ -18,7 +19,7 @@ const Dashboard = () => {
         const fetchGarden = async () => {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             try {
-                const res = await axios.get('http://localhost:5001/api/garden', config);
+                const res = await axios.get(`${API_URL}/api/garden`, config);
                 setGarden(res.data);
             } catch (error) { console.error(error); }
         };
@@ -26,7 +27,7 @@ const Dashboard = () => {
         const fetchReminders = async () => {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             try {
-                const res = await axios.get('http://localhost:5001/api/reminders', config);
+                const res = await axios.get(`${API_URL}/api/reminders`, config);
                 setReminders(res.data);
             } catch (error) { console.error(error); }
         };

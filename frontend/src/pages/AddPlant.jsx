@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaLeaf, FaTint, FaSun, FaSeedling, FaArrowLeft } from 'react-icons/fa';
+import API_URL from '../config/api';
 
 const AddPlant = () => {
     const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const AddPlant = () => {
         };
 
         try {
-            await axios.post('http://localhost:5001/api/garden', formData, config);
+            await axios.post(`${API_URL}/api/garden`, formData, config);
             navigate('/');
         } catch (error) {
             alert('Failed to add plant');

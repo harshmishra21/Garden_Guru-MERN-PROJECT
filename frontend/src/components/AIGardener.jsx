@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaRobot, FaPaperPlane, FaTimes, FaLeaf } from 'react-icons/fa';
+import API_URL from '../config/api';
 
 const AIGardener = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ const AIGardener = () => {
         try {
             const token = JSON.parse(localStorage.getItem('user'))?.token;
 
-            const response = await fetch('http://localhost:5001/api/chat', {
+            const response = await fetch(`${API_URL}/api/chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

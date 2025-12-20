@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaSun, FaWater, FaSeedling, FaCalendarAlt, FaCamera, FaTrash, FaCheckCircle, FaArrowLeft } from 'react-icons/fa';
 import { getPlantImage } from '../utils/plantImages';
+import API_URL from '../config/api';
 
 const PlantDetails = () => {
     const { id } = useParams();
@@ -23,12 +24,12 @@ const PlantDetails = () => {
             const config = { headers: { Authorization: `Bearer ${token}` } };
             try {
                 // Fetch garden plants and find current one
-                const resGarden = await axios.get('http://localhost:5001/api/garden', config);
+                const resGarden = await axios.get(`${API_URL}/api/garden`, config);
                 const foundPlant = resGarden.data.find(p => p._id === id);
                 setPlant(foundPlant);
 
                 // Fetch logs
-                const resLogs = await axios.get(`http://localhost:5001/api/logs/${id}`, config);
+                const resLogs = await axios.get(`${API_URL}/api/logs/${id}`, config);
                 setLogs(resLogs.data.reverse()); // Show newest first
             } catch (error) { console.error(error); }
         };
@@ -44,7 +45,7 @@ const PlantDetails = () => {
         if (logImage) formData.append('photo', logImage);
 
         try {
-            const res = await axios.post('http://localhost:5001/api/logs', formData, config);
+            const res = await axios.post(`${API_URL}/api/logs`, formData, config);
             setLogs([res.data, ...logs]);
             setNewLog('');
             setLogImage(null);
@@ -56,7 +57,7 @@ const PlantDetails = () => {
         e.preventDefault();
         const config = { headers: { Authorization: `Bearer ${token}` } };
         try {
-            await axios.post('http://localhost:5001/api/reminders', {
+            await axios.post(`${API_URL}/api/reminders`, {
                 gardenPlantId: id,
                 type: reminderType,
                 date: reminderDate
@@ -70,7 +71,7 @@ const PlantDetails = () => {
         if (!window.confirm('Are you sure you want to remove this plant from your garden?')) return;
         const config = { headers: { Authorization: `Bearer ${token}` } };
         try {
-            await axios.delete(`http://localhost:5001/api/garden/${id}`, config);
+            await axios.delete(`${API_URL}/api/garden/${id}`, config);
             navigate('/');
         } catch (error) { alert('Failed to delete'); }
     }
@@ -189,7 +190,7 @@ const PlantDetails = () => {
                                 <div key={log._id} style={{ display: 'flex', gap: '20px', padding: '20px', background: 'white', borderRadius: '15px', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
                                     <div style={{ flex: '0 0 120px', height: '120px', background: '#f0f0f0', borderRadius: '10px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         {log.photo ? (
-                                            <img src={`http://localhost:5001/${log.photo}`} alt="Log" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            <img src={`${API_URL}/${log.photo}`} alt="Log" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         ) : (
                                             <FaSeedling size={30} color="#ccc" />
                                         )}

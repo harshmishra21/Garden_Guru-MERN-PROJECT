@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaEnvelope, FaLock, FaLeaf } from 'react-icons/fa';
+import API_URL from '../config/api';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5001/api/auth/login', formData);
+            const response = await axios.post(`${API_URL}/api/auth/login`, formData);
             if (response.data) {
                 localStorage.setItem('user', JSON.stringify(response.data));
                 window.location.href = '/';

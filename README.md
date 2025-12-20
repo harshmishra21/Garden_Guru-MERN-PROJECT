@@ -4,6 +4,12 @@ GardenGuru is a comprehensive web application designed for plant enthusiasts to 
 
 Built with the **MERN Stack** (MongoDB, Express.js, React, Node.js) and integrated with **Google Gemini AI**.
 
+## 🌐 Live Demo
+
+**🔗 [Visit the Live Application](https://garden-guru-mern-project.vercel.app)**
+
+Experience GardenGuru in action! The application is deployed and ready to use.
+
 ---
 
 ## 🚀 Features

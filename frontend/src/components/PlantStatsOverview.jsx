@@ -4,6 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 
 import { FaLeaf, FaTint, FaSeedling, FaCut, FaChartLine } from 'react-icons/fa';
 import PlantHistoryModal from './PlantHistoryModal';
 import { getPlantImage } from '../utils/plantImages';
+import API_URL from '../config/api';
 
 const COLORS = ['#2d6a4f', '#40916c', '#52b788', '#74c69d', '#95d5b2', '#b7e4c7', '#d8f3dc'];
 
@@ -25,7 +26,7 @@ const PlantStatsOverview = ({ garden }) => {
         try {
             setLoading(true);
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const res = await axios.get('http://localhost:5001/api/stats/overview', config);
+            const res = await axios.get(`${API_URL}/api/stats/overview`, config);
             setStats(res.data);
         } catch (error) {
             console.error('Error fetching stats:', error);
